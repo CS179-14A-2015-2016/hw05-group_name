@@ -103,7 +103,7 @@ void keyboard() {
 		paddle_speedy2 = 0;
 	}
 	if (GetAsyncKeyState(VK_DOWN)){
-		paddle_speedy2 = 6;
+		paddle_speedy2 = -6;
 		rightpaddle_y += paddle_speedy2;
 		paddle_speedy2 = 0;
 	}
