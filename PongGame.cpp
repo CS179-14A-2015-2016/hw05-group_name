@@ -79,12 +79,27 @@ float clamp(float n, float lower, float upper) {
 //keyboard controls
 void keyboard() {
 	//left paddle
-	if (GetAsyncKeyState(VK_W)) leftpaddle_y += paddle_speed;
-	if (GetAsyncKeyState(VK_S)) leftpaddle_y -= paddle_speed;
-
+	if (GetAsyncKeyState(VK_W)) {
+		if ((leftpaddle_y + paddle_height) <= height) {
+			leftpaddle_y += paddle_speed;
+		}
+	}
+	if (GetAsyncKeyState(VK_S)) {
+		if ((leftpaddle_y) >= 0) {
+			leftpaddle_y -= paddle_speed;
+		}
+	}
 	//right paddle
-	if (GetAsyncKeyState(VK_UP)) rightpaddle_y += paddle_speed;
-	if (GetAsyncKeyState(VK_DOWN)) rightpaddle_y -= paddle_speed;
+	if (GetAsyncKeyState(VK_UP)) {
+		if ((rightpaddle_y + paddle_height) <= height) {
+			rightpaddle_y += paddle_speed;
+		}
+	}
+	if (GetAsyncKeyState(VK_DOWN)) {
+		if ((rightpaddle_y) >= 0) {
+			rightpaddle_y -= paddle_speed;
+		}
+	}
 }
 
 //makes gl recognized 2d usage
