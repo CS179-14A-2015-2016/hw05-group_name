@@ -187,8 +187,8 @@ void vecnorm(float &x, float &y) {
 
 //ball1 movement
 void ballMove() {
-	ball2_posx += ball_speedx1;
-	ball2_posy += ball_speedy1;
+	ball_posx += ball_speedx1;
+	ball_posy += ball_speedy1;
 
 	//ball to ball collision
 	float D = sqrt((ball2_posx - ball_posx)*(ball2_posx - ball_posx) + (ball2_posy - ball_posy)*(ball2_posy - ball_posy));
