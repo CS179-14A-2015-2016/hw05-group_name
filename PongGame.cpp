@@ -56,9 +56,9 @@ float ball2_posy = height / 2;
 float ball2_dirx = 1.0;
 float ball2_diry = -1.0;
 
-float ball_speedx1 = 5;
+float ball_speedx1 = 4;
 float ball_speedy1 = 0;
-float ball_speedx2 = -5;
+float ball_speedx2 = -4;
 float ball_speedy2 = 0;
 float ball_radius = 5;
 int ball_segments = 8;
@@ -76,8 +76,8 @@ string inttostr(int x) {
 /*
 //clamp function
 float clamp(float n, float lower, float upper) {
-	n = (n > lower) * n + !(n > lower) * lower;
-	return (n < upper) * n + !(n < upper) * upper;
+n = (n > lower) * n + !(n > lower) * lower;
+return (n < upper) * n + !(n < upper) * upper;
 }
 */
 
@@ -85,30 +85,30 @@ float clamp(float n, float lower, float upper) {
 //keyboard controls
 void keyboard() {
 	//left paddle
-	if (GetAsyncKeyState(VK_W)) 
+	if (GetAsyncKeyState(VK_W))
 	{
-		if ((leftpaddle_y + paddle_height) <= height) 
+		if ((leftpaddle_y + paddle_height) <= height)
 		{
 			paddle_speedy1 = 6;
 			leftpaddle_y += paddle_speedy1;
 			paddle_speedy1 = 1;
 		}
 	}
-	
-	if (GetAsyncKeyState(VK_S)) 
+
+	if (GetAsyncKeyState(VK_S))
 	{
-		if ((leftpaddle_y) >= 0) 
-		{	
+		if ((leftpaddle_y) >= 0)
+		{
 			paddle_speedy1 = -6;
 			leftpaddle_y += paddle_speedy1;
-			paddle_speedy1 = 1;leftpaddle_y;
+			paddle_speedy1 = 1; leftpaddle_y;
 		}
 	}
 
 	//right paddle
-	if (GetAsyncKeyState(VK_UP)) 
+	if (GetAsyncKeyState(VK_UP))
 	{
-		if ((rightpaddle_y + paddle_height) <= height) 
+		if ((rightpaddle_y + paddle_height) <= height)
 		{
 			paddle_speedy2 = 6;
 			rightpaddle_y += paddle_speedy2;
@@ -117,7 +117,7 @@ void keyboard() {
 	}
 	if (GetAsyncKeyState(VK_DOWN))
 	{
-		if ((rightpaddle_y) >= 0) 
+		if ((rightpaddle_y) >= 0)
 		{
 			paddle_speedy2 = -6;
 			rightpaddle_y += paddle_speedy2;
@@ -145,10 +145,10 @@ void textDraw(float x, float y, string text) {
 //draw paddles
 void paddleDraw(float x, float y, float width, float height) {
 	glBegin(GL_QUADS);
-		glVertex2f(x, y);
-		glVertex2f(x + width, y);
-		glVertex2f(x + width, y + height);
-		glVertex2f(x, y + height);
+	glVertex2f(x, y);
+	glVertex2f(x + width, y);
+	glVertex2f(x + width, y + height);
+	glVertex2f(x, y + height);
 	glEnd();
 }
 
@@ -156,7 +156,7 @@ void paddleDraw(float x, float y, float width, float height) {
 void ballDraw(float cx, float cy, float r, int segments) {
 	float theta = 2 * 3.1415926 / float(segments);
 	//sin and cos calculation
-	float cos = cosf(theta); 
+	float cos = cosf(theta);
 	float sin = sinf(theta);
 	float t;
 
@@ -164,14 +164,14 @@ void ballDraw(float cx, float cy, float r, int segments) {
 	float vary = 0;
 
 	glBegin(GL_LINE_LOOP);
-		for (int i = 0; i < segments; i++) {
-			glVertex2f(varx + cx, vary + cy); //outputs vertex
+	for (int i = 0; i < segments; i++) {
+		glVertex2f(varx + cx, vary + cy); //outputs vertex
 
-			//apply rotation matrix
-			t = varx;
-			varx = cos * varx - sin * vary;
-			vary = sin * t + cos * vary;
-		}
+										  //apply rotation matrix
+		t = varx;
+		varx = cos * varx - sin * vary;
+		vary = sin * t + cos * vary;
+	}
 	glEnd();
 }
 
@@ -206,9 +206,9 @@ void ballMove() {
 		(ball_posy >= leftpaddle_y)) {
 		// set fly direction depending on where it hit the racket
 		// (t is 0.5 if hit at top, 0 at center, -0.5 at bottom)
-		
-	//	ball_dirx = fabs(ball_dirx); // force it to be positive
-	//	ball_diry = t;
+
+		//	ball_dirx = fabs(ball_dirx); // force it to be positive
+		//	ball_diry = t;
 		float xi = ball_speedx1;
 		float yi = ball_speedy1;
 		float xn = paddle_speedx1;
@@ -216,7 +216,7 @@ void ballMove() {
 		float t = ((ball_posy - leftpaddle_y) / paddle_height) - 0.5f;
 		ball_speedx1 = -xi + (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		ball_speedy1 = yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
-		
+
 	}
 
 	//hit by right paddle
@@ -255,7 +255,7 @@ void ballMove() {
 	}
 
 	//top /bot wall collision
-	if (ball_posy > height - 20 || ball_posy < 20)
+	if (ball_posy > height - 20 || ball_posy < 10)
 	{
 		ball_speedy1 *= -1;
 	}
@@ -291,8 +291,8 @@ void ball2Move() {
 		float yn = paddle_speedy1;
 		float t = ((ball2_posy - leftpaddle_y) / paddle_height) - 0.5f;
 		ball_speedx2 = -xi + (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
-		ball_speedy2 = t+(yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn)))));
-		
+		ball_speedy2 = t + (yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn)))));
+
 	}
 
 	//hit by right paddle
@@ -302,15 +302,15 @@ void ball2Move() {
 		(ball2_posy >= rightpaddle_y)) {
 		// set fly direction depending on where it hit the racket
 		// (t is 0.5 if hit at top, 0 at center, -0.5 at bottom)
-		float xi = ball_speedx1;
-		float yi = ball_speedy1;
+		float xi = ball_speedx2;
+		float yi = ball_speedy2;
 		float xn = paddle_speedx2;
 		float yn = paddle_speedy2;
 		float t = ((ball2_posy - rightpaddle_y) / paddle_height) - 0.5f;
 		ball_speedx2 = xi - (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
-		ball_speedy2 = t+(yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn)))));
+		ball_speedy2 = t + (yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn)))));
 		ball_speedx2 *= -1;
-		
+
 	}
 
 	//left wall collision
@@ -332,7 +332,7 @@ void ball2Move() {
 	}
 
 	//top /bot wall collision
-	if (ball_posy > height - 20 || ball_posy < 20)
+	if (ball_posy > height - 20 || ball_posy < 10)
 	{
 		ball_speedy2 *= -1;
 	}
@@ -399,6 +399,6 @@ int main(int argc, char** argv)
 	//program loop
 	glutMainLoop();
 
-    return 0;
+	return 0;
 }
 
