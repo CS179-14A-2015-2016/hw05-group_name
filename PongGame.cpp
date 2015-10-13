@@ -206,14 +206,14 @@ void ballMove() {
 		(ball_posy >= leftpaddle_y)) {
 		// set fly direction depending on where it hit the racket
 		// (t is 0.5 if hit at top, 0 at center, -0.5 at bottom)
-		float t = ((ball_posy - leftpaddle_y) / paddle_height) - 0.5f;
+		
 	//	ball_dirx = fabs(ball_dirx); // force it to be positive
 	//	ball_diry = t;
 		float xi = ball_speedx1;
 		float yi = ball_speedy1;
 		float xn = paddle_speedx1;
 		float yn = paddle_speedy1;
-
+		float t = ((ball_posy - leftpaddle_y) / paddle_height) - 0.5f;
 		ball_speedx1 = -xi + (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		ball_speedy1 = yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		
@@ -230,7 +230,7 @@ void ballMove() {
 		float yi = ball_speedy1;
 		float xn = paddle_speedx2;
 		float yn = paddle_speedy2;
-
+		float t = ((ball_posy - rightpaddle_y) / paddle_height) - 0.5f;
 		ball_speedx1 = xi - (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		ball_speedy1 = yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		ball_speedx1 *= -1;
@@ -241,8 +241,8 @@ void ballMove() {
 		++p2score;
 		ball_posx = width / 2;
 		ball_posy = height / 2;
-		ball_dirx = fabs(ball_dirx); // force it to be positive
-		ball_diry = 0;
+		ball_speedx1 = 5;
+		ball_speedy1 = 0;
 	}
 
 	//right wall collision
@@ -250,8 +250,8 @@ void ballMove() {
 		++p1score;
 		ball_posx = width / 2;
 		ball_posy = height / 2;
-		ball_dirx = -fabs(ball_dirx); // force it to be negative
-		ball_diry = 0;
+		ball_speedx1 = -5;
+		ball_speedy1 = 0;
 	}
 
 	//top /bot wall collision
@@ -289,9 +289,9 @@ void ball2Move() {
 		float yi = ball_speedy2;
 		float xn = paddle_speedx1;
 		float yn = paddle_speedy1;
-
+		float t = ((ball2_posy - leftpaddle_y) / paddle_height) - 0.5f;
 		ball_speedx2 = -xi + (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
-		ball_speedy2 = yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
+		ball_speedy2 = t+(yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn)))));
 		
 	}
 
@@ -306,9 +306,9 @@ void ball2Move() {
 		float yi = ball_speedy1;
 		float xn = paddle_speedx2;
 		float yn = paddle_speedy2;
-
+		float t = ((ball2_posy - rightpaddle_y) / paddle_height) - 0.5f;
 		ball_speedx2 = xi - (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
-		ball_speedy2 = yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
+		ball_speedy2 = t+(yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn)))));
 		ball_speedx2 *= -1;
 		
 	}
@@ -318,8 +318,8 @@ void ball2Move() {
 		++p2score;
 		ball2_posx = width / 2;
 		ball2_posy = height / 2;
-		ball2_dirx = fabs(ball2_dirx); // force it to be positive
-		ball2_diry = 0;
+		ball_speedx2 = 5;
+		ball_speedy2 = 0;
 	}
 
 	//right wall collision
@@ -327,8 +327,8 @@ void ball2Move() {
 		++p1score;
 		ball2_posx = width / 2;
 		ball2_posy = height / 2;
-		ball2_dirx = -fabs(ball2_dirx); // force it to be negative
-		ball2_diry = 0;
+		ball_speedx2 = -5;
+		ball_speedy2 = 0;
 	}
 
 	//top /bot wall collision
