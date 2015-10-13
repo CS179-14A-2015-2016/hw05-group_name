@@ -228,8 +228,8 @@ void ballMove() {
 		// (t is 0.5 if hit at top, 0 at center, -0.5 at bottom)
 		float xi = ball_speedx1;
 		float yi = ball_speedy1;
-		float xn = paddle_speedx1;
-		float yn = paddle_speedy1;
+		float xn = paddle_speedx2;
+		float yn = paddle_speedy2;
 
 		ball_speedx1 = xi - (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		ball_speedy1 = yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
@@ -302,10 +302,10 @@ void ball2Move() {
 		(ball2_posy >= rightpaddle_y)) {
 		// set fly direction depending on where it hit the racket
 		// (t is 0.5 if hit at top, 0 at center, -0.5 at bottom)
-		float xi = ball_speedx2;
-		float yi = ball_speedy2;
-		float xn = paddle_speedx1;
-		float yn = paddle_speedy1;
+		float xi = ball_speedx1;
+		float yi = ball_speedy1;
+		float xn = paddle_speedx2;
+		float yn = paddle_speedy2;
 
 		ball_speedx2 = xi - (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		ball_speedy2 = yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
