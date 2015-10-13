@@ -206,6 +206,12 @@ void ballMove() {
 		(ball_posy >= leftpaddle_y)) {
 		// set fly direction depending on where it hit the racket
 		// (t is 0.5 if hit at top, 0 at center, -0.5 at bottom)
+<<<<<<< HEAD
+=======
+
+		//	ball_dirx = fabs(ball_dirx); // force it to be positive
+		//	ball_diry = t;
+>>>>>>> e534a0c0f8addfa45d3c76adf003096b28ee20cc
 		float xi = ball_speedx1;
 		float yi = ball_speedy1;
 		float xn = paddle_speedx1;
