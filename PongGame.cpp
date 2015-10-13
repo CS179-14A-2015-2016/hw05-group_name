@@ -195,8 +195,8 @@ void ballMove() {
 	//if collision
 	if (D <= 2 * ball_radius) {
 		float b = ((ball_posy - ball2_posy) / (2 * ball_radius)) - 0.5f;
-		ball_dirx = -ball_dirx;
-		ball_diry = b;
+		ball_speedx1 = -ball_speedx1;
+		ball_speedy1 = b;
 	}
 
 	//hit by left paddle
@@ -274,8 +274,8 @@ void ball2Move() {
 	//if collision
 	if (D <= 2 * ball_radius) {
 		float b = ((ball2_posy - ball_posy) / (2 * ball_radius)) - 0.5f;
-		ball2_dirx = -ball2_dirx;
-		ball2_diry = b;
+		ball_speedx2 = -ball_speedx2;
+		ball_speedy2 = b;
 	}
 
 	//hit by left paddle
