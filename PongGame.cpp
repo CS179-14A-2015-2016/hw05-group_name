@@ -32,9 +32,9 @@ int p2score = 0;
 int paddle_width = 8;
 int paddle_height = 60;
 int paddle_speedx1 = 0;
-float paddle_speedy1 = 0;
+float paddle_speedy1 = 1;
 int paddle_speedx2 = 0;
-float paddle_speedy2 = 0;
+float paddle_speedy2 = 1;
 
 //paddle positions
 float leftpaddle_x = 10;
@@ -91,7 +91,7 @@ void keyboard() {
 		{
 			paddle_speedy1 = 6;
 			leftpaddle_y += paddle_speedy1;
-			paddle_speedy1 = 0;
+			paddle_speedy1 = 1;
 		}
 	}
 	
@@ -101,7 +101,7 @@ void keyboard() {
 		{	
 			paddle_speedy1 = -6;
 			leftpaddle_y += paddle_speedy1;
-			paddle_speedy1 = 0;leftpaddle_y;
+			paddle_speedy1 = 1;leftpaddle_y;
 		}
 	}
 
@@ -112,7 +112,7 @@ void keyboard() {
 		{
 			paddle_speedy2 = 6;
 			rightpaddle_y += paddle_speedy2;
-			paddle_speedy2 = 0;
+			paddle_speedy2 = 1;
 		}
 	}
 	if (GetAsyncKeyState(VK_DOWN))
@@ -121,7 +121,7 @@ void keyboard() {
 		{
 			paddle_speedy2 = -6;
 			rightpaddle_y += paddle_speedy2;
-			paddle_speedy2 = 0;
+			paddle_speedy2 = 1;
 		}
 	}
 }
@@ -214,7 +214,7 @@ void ballMove() {
 		float xn = paddle_speedx1;
 		float yn = paddle_speedy1;
 
-		ball_speedx1 = xi - (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
+		ball_speedx1 = -xi + (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		ball_speedy1 = yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		
 	}
@@ -290,7 +290,7 @@ void ball2Move() {
 		float xn = paddle_speedx1;
 		float yn = paddle_speedy1;
 
-		ball_speedx2 = xi - (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
+		ball_speedx2 = -xi + (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		ball_speedy2 = yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		
 	}
