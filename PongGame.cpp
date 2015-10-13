@@ -99,12 +99,12 @@ void keyboard() {
 	//right paddle
 	if (GetAsyncKeyState(VK_UP)) {
 		paddle_speedy2 = 6;
-		leftpaddle_y += paddle_speedy2;
+		rightpaddle_y += paddle_speedy2;
 		paddle_speedy2 = 0;
 	}
 	if (GetAsyncKeyState(VK_DOWN)){
 		paddle_speedy2 = 6;
-		leftpaddle_y += paddle_speedy2;
+		rightpaddle_y += paddle_speedy2;
 		paddle_speedy2 = 0;
 	}
 }
