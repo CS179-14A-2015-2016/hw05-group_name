@@ -58,7 +58,7 @@ float ball2_diry = -1.0;
 
 float ball_speedx1 = 5;
 float ball_speedy1 = 0;
-float ball_speedx2 = 5;
+float ball_speedx2 = -5;
 float ball_speedy2 = 0;
 float ball_radius = 5;
 int ball_segments = 8;
@@ -216,7 +216,7 @@ void ballMove() {
 
 		ball_speedx1 = xi - (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		ball_speedy1 = yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
-		ball_speedx1 *= -1;
+		
 	}
 
 	//hit by right paddle
@@ -292,7 +292,7 @@ void ball2Move() {
 
 		ball_speedx2 = xi - (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		ball_speedy2 = yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
-		ball_speedx2 *= -1;
+		
 	}
 
 	//hit by right paddle
@@ -310,6 +310,7 @@ void ball2Move() {
 		ball_speedx2 = xi - (2 * xn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		ball_speedy2 = yi - (2 * yn*((xi*xn + yi*yn) / ((xn*xn) + (yn*yn))));
 		ball_speedx2 *= -1;
+		
 	}
 
 	//left wall collision
