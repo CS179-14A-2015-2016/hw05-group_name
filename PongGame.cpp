@@ -85,27 +85,44 @@ float clamp(float n, float lower, float upper) {
 //keyboard controls
 void keyboard() {
 	//left paddle
-	if (GetAsyncKeyState(VK_W)) {
-		paddle_speedy1 = 6;
-		leftpaddle_y += paddle_speedy1;
-		paddle_speedy1 = 0;
+	if (GetAsyncKeyState(VK_W)) 
+	{
+		if ((leftpaddle_y + paddle_height) <= height) 
+		{
+			paddle_speedy1 = 6;
+			leftpaddle_y += paddle_speedy1;
+			paddle_speedy1 = 0;
+		}
 	}
-	if (GetAsyncKeyState(VK_S)) {
-		paddle_speedy1 = -6;
-		leftpaddle_y += paddle_speedy1;
-		paddle_speedy1 = 0;leftpaddle_y;
+	
+	if (GetAsyncKeyState(VK_S)) 
+	{
+		if ((leftpaddle_y) >= 0) 
+		{	
+			paddle_speedy1 = -6;
+			leftpaddle_y += paddle_speedy1;
+			paddle_speedy1 = 0;leftpaddle_y;
+		}
 	}
 
 	//right paddle
-	if (GetAsyncKeyState(VK_UP)) {
-		paddle_speedy2 = 6;
-		rightpaddle_y += paddle_speedy2;
-		paddle_speedy2 = 0;
+	if (GetAsyncKeyState(VK_UP)) 
+	{
+		if ((rightpaddle_y + paddle_height) <= height) 
+		{
+			paddle_speedy2 = 6;
+			rightpaddle_y += paddle_speedy2;
+			paddle_speedy2 = 0;
+		}
 	}
-	if (GetAsyncKeyState(VK_DOWN)){
-		paddle_speedy2 = -6;
-		rightpaddle_y += paddle_speedy2;
-		paddle_speedy2 = 0;
+	if (GetAsyncKeyState(VK_DOWN))
+	{
+		if ((rightpaddle_y) >= 0) 
+		{
+			paddle_speedy2 = -6;
+			rightpaddle_y += paddle_speedy2;
+			paddle_speedy2 = 0;
+		}
 	}
 }
 
